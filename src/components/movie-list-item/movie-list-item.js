@@ -11,7 +11,6 @@ export default class MovieListItem extends Component {
         if (liked) {
             classNames+= ' liked';
         }
-
         return (
             <div className={classNames}>
                 <img src={image} alt='movie'></img>
