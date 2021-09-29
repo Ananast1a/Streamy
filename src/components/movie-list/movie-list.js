@@ -9,12 +9,10 @@ import './movie-list.css';
 import MovieListItem from '../movie-list-item/movie-list-item';
 
 export default class MovieList extends Component {
-
-
     render() {
-        const {movieList, loading, error, term, filter, onToggleLiked, onToggleFavorite} = this.props;
+        const {movieList, loading, error, term, filter, onToggleLiked, onToggleFavorite, movies} = this.props;
 
-        const items = movieList.map(el => {
+        const items = movies.map(el => {
             const {...itemProps} = el;
             return (
                 <li key={el.id} className="list-group-item">

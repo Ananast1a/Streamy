@@ -74,7 +74,18 @@ export default class App extends Component {
         this.setState({filter})
     }
 
+    searchPost = (items, term) => {
+        if (term.length === 0) {
+            return items
+        } 
+
+        return items.filter((item) => {
+            return item.label.indexOf(term) > -1
+        });
+    }
+
     filterPost = (items, filter) => {
+        console.log(items, filter, 'i do filterPost');
         if (filter === 'liked') {
             return items.filter(el => el.liked)
         } else {
@@ -83,6 +94,11 @@ export default class App extends Component {
     }
 
     render() {
+        const {movieList, term, filter} = this.state;
+        const liked = movieList.filter(el => el.liked).length;
+        const allMovies = movieList.length;
+        const visibleMovies = this.filterPost(this.searchPost(movieList, term), filter);
+
         return (
             <div className="app">            
                 <div className="header">
@@ -90,14 +106,21 @@ export default class App extends Component {
                         <LogIn/>
                         <Register/>
                     </div>
-                    <AppHeader/>
+                    <AppHeader
+                    liked={liked}
+                    allMovies={allMovies}
+                    />
                 </div>
                 <div className="search-panel d-flex">
                     <SearchPanel/>
-                    <MovieStatusFilter/>
+                    <MovieStatusFilter
+                    filter={filter}
+                    onFilterSelect={this.onFilterSelect}
+                    />
                 </div>
                 <div className="main-content d-flex justify-content-between">
                 <MovieList {...this.state}
+                movies={visibleMovies}
                 onToggleFavorite={this.onToggleFavorite}
                 onToggleLiked={this.onToggleLiked}
                 />

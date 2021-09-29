@@ -4,12 +4,11 @@ import './movie-status-filter.css';
 export default class MovieStatusFilter extends Component {
     buttons = [
         {name: 'all', label: 'All'},
-        {name: 'like', label: 'Liked'}
+        {name: 'liked', label: 'Liked'}
     ]
 
     render() {
         const {filter, onFilterSelect} = this.props;
-
         const buttons = this.buttons.map(({name, label}) => {
             const active = filter === name;
             const clazz = active ? 'btn-info' : 'btn-outline-secondary'
@@ -29,12 +28,11 @@ export default class MovieStatusFilter extends Component {
                 <option key={el} value={el}>{el}</option>
             )
         });
-
         return (
-            <div className="btn-group">
+            <div className={`btn-group`}>
                 {buttons}
-                <select defaultValue={'default'} className="btn btn-outline-secondary" name="genre" id="genres"
-
+                <select defaultValue={'default'} className="btn" name="genre" id="genres"
+                onSelect={() => onFilterSelect(options.el)}
                 >
                 <option value="default" disabled>Choose genre</option>
                     {genreOptions}
