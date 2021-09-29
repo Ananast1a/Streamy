@@ -1,18 +1,5 @@
 class MazeService {
-    getAllMovies = async () => {
-        let moviesArr = [];
-        for (let i = 1; i < 11; i++) {
-            const res = await this.getResource(`https://api.tvmaze.com/shows/${i}`)
-            moviesArr.push(res);
-        }
-        return moviesArr.map(this._transfromMovie);
-    }
 
-    // getOneMovie = async (id) => {
-    //     const res = await this.getResource(`https://api.tvmaze.com/shows/${id}`);
-    //     return res;
-    // }
-    
     getResource = async (url) => {
         let res = await fetch(url);
     
@@ -23,10 +10,14 @@ class MazeService {
         return await res.json();
     }
 
-    // getAllCharacters = async () => {
-    //     const res = await this.getResource(`${this._apiBase}characters?limit=9&offset=210&${this._apiKey}`);
-    //     return res.data.results.map(this._transfromCharacter);
-    // }
+    getAllMovies = async () => {
+        let moviesArr = [];
+        for (let i = 1; i < 11; i++) {
+            const res = await this.getResource(`https://api.tvmaze.com/shows/${i}`)
+            moviesArr.push(res);
+        }
+        return moviesArr.map(this._transfromMovie);
+    }
 
     _transfromMovie = (movie) => {
         return {
