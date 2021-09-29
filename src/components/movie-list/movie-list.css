@@ -1,0 +1,86 @@
+.app-list {
+  margin-top: 50px;
+  width: 80%;
+}
+.app-list .list-group-item {
+  padding: 20px 20px 10px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.app-list .list-group-item img {
+  height: 100%;
+  margin: 5px;
+}
+
+ul {
+  padding: 0;
+}
+
+.movie-info {
+  padding: 5px 15px;
+}
+
+.movie-title {
+  display: flex;
+  justify-content: space-between;
+  font-size: 30px;
+  font-weight: 700;
+}
+
+p {
+  margin: 5px 0;
+}
+
+
+.list-group-item button {
+  width: 35px;
+  height: 35px;
+  margin: 3px;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+}
+.list-group-item button:focus {
+    box-shadow: none;
+    outline: none;
+}
+.list-group-item .btn-trash {
+    color: red;
+}
+.list-group-item .fa-heart {
+  text-align: center;
+  font-size: 16px;
+  color: #aeaeae;
+  transition: 0.3s all;
+}
+
+.list-group-item.liked .fa-heart {
+  color: #f14242;
+}
+
+.list-group-item .fa-share {
+  color: rgb(0, 128, 111);
+}
+
+.list-group-item.favorite .btn-star {
+  color: #FFD700;
+}
+
+.list-group-item .btn-star {
+  color: #aeaeae;
+}
+
+.summary {
+  color: rgb(24, 24, 24);
+  text-align: justify;
+}
+
+.genres {
+  font-weight: 700;
+}
+
+.lang {
+  font-style: italic;
+}

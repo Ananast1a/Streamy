@@ -1,0 +1,17 @@
+.user-instance {
+    margin: 10px;
+}
+
+.user-name {
+    margin-right: 10px;
+}
+
+.user-instance button {
+    width: 30px;
+    height: 30px;
+    margin: 3px;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    color: grey;
+  }
