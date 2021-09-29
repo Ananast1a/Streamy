@@ -80,17 +80,29 @@ export default class App extends Component {
         } 
 
         return items.filter((item) => {
-            return item.label.indexOf(term) > -1
+            return item.name.indexOf(term) > -1
         });
     }
 
     filterPost = (items, filter) => {
-        console.log(items, filter, 'i do filterPost');
-        if (filter === 'liked') {
-            return items.filter(el => el.liked)
-        } else {
+        // if (filter === 'liked') {
+        //     return items.filter(el => el.liked)
+        // } else {
+        //     return items;
+        // }
+        switch (filter) {
+            case 'liked':
+                return items.filter(el => el.liked)
+            case 'all':
+                return items;
+            case 'drama':
+                return items.filter(el => el.genres.match(/(drama)/ig))
+            ;
+            default: 
             return items;
+            
         }
+
     }
 
     render() {
@@ -112,7 +124,9 @@ export default class App extends Component {
                     />
                 </div>
                 <div className="search-panel d-flex">
-                    <SearchPanel/>
+                    <SearchPanel
+                    onUpdateSearch={this.onUpdateSearch}
+                    />
                     <MovieStatusFilter
                     filter={filter}
                     onFilterSelect={this.onFilterSelect}

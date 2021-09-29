@@ -7,7 +7,7 @@ export default class AppHeader extends Component {
         return (
             <div className="app-header d-flex">
                 <h1>Streamy</h1>
-                <h2>{allMovies} movies, {liked} liked</h2>
+                <h2>{allMovies} shows, {liked} liked</h2>
             </div>
         )
     }

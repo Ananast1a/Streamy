@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import MazeService from '../../services/MazeService';
+// import MazeService from '../../services/MazeService';
 // import {getShows} from '../../services/GetShows';
 // import MovieListItem from '../movie-list-item/movie-list-item';
 import Spinner from '../spinner/Spinner';

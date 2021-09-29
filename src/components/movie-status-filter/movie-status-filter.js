@@ -32,7 +32,7 @@ export default class MovieStatusFilter extends Component {
             <div className={`btn-group`}>
                 {buttons}
                 <select defaultValue={'default'} className="btn" name="genre" id="genres"
-                onSelect={() => onFilterSelect(options.el)}
+                onSelect={console.log('selected THIS')}
                 >
                 <option value="default" disabled>Choose genre</option>
                     {genreOptions}
