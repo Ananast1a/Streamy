@@ -1,12 +1,15 @@
-import React from 'react';
+import React, {Component} from 'react';
 import './register.css';
 
-const Register = () => {
-    return (
-        <div className="register">
-            <button className="btn btn-outline-dark reg">Register</button>
-        </div>
-    )
-}
+export default class Register extends Component {
+    render() {
+        const {login} = this.props;
+        const content = login ? null : <button className="btn btn-outline-dark reg">Register</button>
 
-export default Register;
+        return (
+            <div className="register">
+                {content}
+            </div>
+        )
+    } 
+}

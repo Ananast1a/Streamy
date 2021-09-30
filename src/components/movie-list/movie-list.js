@@ -10,7 +10,7 @@ import MovieListItem from '../movie-list-item/movie-list-item';
 
 export default class MovieList extends Component {
     render() {
-        const {movieList, loading, error, term, filter, onToggleLiked, onToggleFavorite, movies} = this.props;
+        const {movieList, loading, error, term, filter, onToggleLiked, onToggleFavorite, movies, login} = this.props;
 
         const items = movies.map(el => {
             const {...itemProps} = el;
@@ -19,6 +19,7 @@ export default class MovieList extends Component {
                   <MovieListItem {...itemProps}
                   onToggleFavorite={onToggleFavorite}
                   onToggleLiked={onToggleLiked}
+                  login={login}
                   />
                 </li>
             )

@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 
 import AppHeader from '../app-header/app-header';
 import LogIn from '../log-in/log-in';
+import LogOut from '../log-out/log-out';
 import SearchPanel from '../search-panel/search-panel';
 import MovieStatusFilter from '../movie-status-filter/movie-status-filter';
 import MovieList from '../movie-list/movie-list';
@@ -18,7 +19,15 @@ export default class App extends Component {
         error: false,
         term: '',
         filter: 'all',
-        filtergenre: 'All genres...'
+        filtergenre: 'All genres...', 
+        login: false,
+        users: [
+            {name: 'John Stansted', friend: false, id: 'u1'},
+            {name: 'Oleh Kustovich', friend: false, id: 'u2'},
+            {name: 'Anna Shyra', friend: false, id: 'u3'},
+            {name: 'Shows Addict', friend: false, id: 'u4'},
+            {name: 'Petro Lyubiy', friend: false, id: 'u5'}
+        ]
     }
 
     mazeService = new MazeService();
@@ -108,18 +117,34 @@ export default class App extends Component {
         }
     }
 
+    onLogin = () => {
+        this.setState({login: true});
+    }
+
+    onLogout = () => {
+        this.setState({login: false});
+    }
+
     render() {
-        const {movieList, term, filter, filtergenre} = this.state;
+        const {movieList, term, filter, filtergenre, login, users} = this.state;
         const liked = movieList.filter(el => el.liked).length;
         const allMovies = movieList.length;
         const visibleMovies = this.filterGenre(this.filterPost(this.searchPost(movieList, term), filter), filtergenre);
+        const regularUsers = users.filter(el => !el.friend);
+        const friends = users.filter(el => el.friend);
 
         return (
             <div className="app">            
                 <div className="header">
                     <div className="login d-flex justify-content-end">
-                        <LogIn/>
-                        <Register/>
+                        <LogIn
+                        onLogin={this.onLogin}
+                        login={login}/>
+                        <Register
+                        login={login}/>
+                        <LogOut
+                        onLogout={this.onLogout}
+                        login={login}/>
                     </div>
                     <AppHeader
                     liked={liked}
@@ -142,7 +167,9 @@ export default class App extends Component {
                 onToggleFavorite={this.onToggleFavorite}
                 onToggleLiked={this.onToggleLiked}
                 />
-                <UsersList/>
+                <UsersList
+                users={users}
+                login={login}/>
                 </div>
             </div>
         )
