@@ -17,7 +17,8 @@ export default class App extends Component {
         loading: true,
         error: false,
         term: '',
-        filter: 'all'
+        filter: 'all',
+        filtergenre: 'All genres...'
     }
 
     mazeService = new MazeService();
@@ -74,6 +75,10 @@ export default class App extends Component {
         this.setState({filter})
     }
 
+    onGenreSelect = (e) => {
+        this.setState({filtergenre: e.target.value})
+    }
+
     searchPost = (items, term) => {
         if (term.length === 0) {
             return items
@@ -85,31 +90,29 @@ export default class App extends Component {
     }
 
     filterPost = (items, filter) => {
-        // if (filter === 'liked') {
-        //     return items.filter(el => el.liked)
-        // } else {
-        //     return items;
-        // }
         switch (filter) {
             case 'liked':
-                return items.filter(el => el.liked)
+                return items.filter(el => el.liked);
             case 'all':
                 return items;
-            case 'drama':
-                return items.filter(el => el.genres.match(/(drama)/ig))
-            ;
             default: 
-            return items;
-            
+            return items;    
         }
+    }
 
+    filterGenre = (items, filtergenre) => {
+        if (filtergenre === 'All genres...') {
+            return items;
+        } else {
+            return items.filter(el => el.genres.includes(filtergenre));
+        }
     }
 
     render() {
-        const {movieList, term, filter} = this.state;
+        const {movieList, term, filter, filtergenre} = this.state;
         const liked = movieList.filter(el => el.liked).length;
         const allMovies = movieList.length;
-        const visibleMovies = this.filterPost(this.searchPost(movieList, term), filter);
+        const visibleMovies = this.filterGenre(this.filterPost(this.searchPost(movieList, term), filter), filtergenre);
 
         return (
             <div className="app">            
@@ -130,6 +133,7 @@ export default class App extends Component {
                     <MovieStatusFilter
                     filter={filter}
                     onFilterSelect={this.onFilterSelect}
+                    onGenreSelect={this.onGenreSelect}
                     />
                 </div>
                 <div className="main-content d-flex justify-content-between">

@@ -4,7 +4,8 @@ class MazeService {
         let res = await fetch(url);
     
         if (!res.ok) {
-            throw new Error(`Could not fetch ${url}, status: ${res.status}`);
+            console.log(`Could not fetch ${url}, status: ${res.status}. Moving to the next one...`)
+            // throw new Error(`Could not fetch ${url}, status: ${res.status}`);
         }
     
         return await res.json();
@@ -12,7 +13,7 @@ class MazeService {
 
     getAllMovies = async () => {
         let moviesArr = [];
-        for (let i = 1; i < 11; i++) {
+        for (let i = 1; i < 17; i++) {
             const res = await this.getResource(`https://api.tvmaze.com/shows/${i}`)
             moviesArr.push(res);
         }
