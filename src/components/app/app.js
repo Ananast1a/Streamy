@@ -125,9 +125,22 @@ export default class App extends Component {
         this.setState({login: false});
     }
 
+    onToggleFriend = (id) => {
+        this.setState(({users}) => {
+            const index = users.findIndex(elem => elem.id === id);
+            const old = users[index];
+            const newItem = {...old, friend: !old.friend};
+            const newArr = [...users.slice(0, index), newItem, ...users.slice(index + 1)];
+            return {
+                users: newArr
+            }
+        })
+    }
+
     render() {
         const {movieList, term, filter, filtergenre, login, users} = this.state;
         const liked = movieList.filter(el => el.liked).length;
+        const favorite = movieList.filter(el => el.favorite).length;
         const allMovies = movieList.length;
         const visibleMovies = this.filterGenre(this.filterPost(this.searchPost(movieList, term), filter), filtergenre);
         const regularUsers = users.filter(el => !el.friend);
@@ -147,6 +160,7 @@ export default class App extends Component {
                         login={login}/>
                     </div>
                     <AppHeader
+                    favorite={favorite}
                     liked={liked}
                     allMovies={allMovies}
                     />
@@ -171,7 +185,9 @@ export default class App extends Component {
                 regularUsers={regularUsers}
                 friends={friends}
                 users={users}
-                login={login}/>
+                login={login}
+                onToggleFriend={this.onToggleFriend}
+                />
                 </div>
             </div>
         )

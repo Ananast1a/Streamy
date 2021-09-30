@@ -4,18 +4,22 @@ import './user-instance.css';
 export default class UserInstance extends Component {
 
     render() {
-        const {login, name} = this.props;
+        const {id, login, name, friend, onToggleFriend} = this.props;
+        const btnIcon = friend ? <i className="fas fa-user-minus"></i> : <i className="fas fa-user-plus"
+        ></i> 
+
         const button = login ? <button 
         type="button"
-        className="btn-add-friend btn-sm">
-            <i className="fas fa-user-plus"></i>
+        className="btn-add-friend btn-sm"
+        onClick={() => onToggleFriend(id)}>
+            {btnIcon}
         </button> : null
 
         return (
             <div className="user-instance d-flex align-items-center">
-                <span className="user-name">
+                <div className="user-name">
                     {name}
-                </span>
+                </div>
                 <div className="d-flex justify-content-center">
                 {button}
                 </div>
