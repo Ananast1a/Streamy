@@ -25,7 +25,7 @@ export default class App extends Component {
             {name: 'John Stansted', friend: false, id: 'u1'},
             {name: 'Oleh Kustovich', friend: false, id: 'u2'},
             {name: 'Anna Shyra', friend: false, id: 'u3'},
-            {name: 'Shows Addict', friend: false, id: 'u4'},
+            {name: 'Shows Addict', friend: true, id: 'u4'},
             {name: 'Petro Lyubiy', friend: false, id: 'u5'}
         ]
     }
@@ -168,6 +168,8 @@ export default class App extends Component {
                 onToggleLiked={this.onToggleLiked}
                 />
                 <UsersList
+                regularUsers={regularUsers}
+                friends={friends}
                 users={users}
                 login={login}/>
                 </div>

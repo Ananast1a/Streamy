@@ -30,11 +30,13 @@ export default class MovieList extends Component {
         const content = !(loading || error) ? items : null;
 
         return (
-            <ul className ="app-list">
+            <div className ="app-list">
+            <ul>
                 {spinner}
                 {errorMessage}
                 {content}
             </ul>
+            </div>
         )
     }
 } 
